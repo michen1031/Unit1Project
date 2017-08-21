@@ -1,0 +1,83 @@
+h1 {
+  text-align: center;
+}
+
+#horse {
+  width: 25%;
+  height: auto;
+}
+
+#cat {
+  width: 25%;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.track {
+  position: relative;
+}
+
+#apple1, #apple2 {
+  width: 7%;
+  height: auto;
+  position: absolute;
+  right: 0;
+  margin: 2em 1em 0 0;
+}
+
+
+.racetrack {
+  border: black solid 1px;
+  margin: 2em 2em;
+  width: 90%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+#run {
+  margin: 1em 2em
+}
+
+#start {
+  margin: 1em 2em
+}
+
+.winner{
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.winText {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+#seconds, #tens, #colon{
+  font-size: 3em;
+}
+
+
+button{
+@include corners (5px);
+background:$base-color;
+color:$white;
+border: solid 1px $white;
+text-decoration:none;
+cursor:pointer;
+font-size:1.2em;
+padding:18px 10px;
+width:180px;
+margin: 10px;
+ outline: none;
+  &:hover{
+	@include transition;
+	background:$white;
+	border: solid 1px $white;
+	color:$base-color;
+	}
+}
