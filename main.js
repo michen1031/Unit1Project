@@ -2,28 +2,18 @@ $(function() {
   var position1 = 0;
   var position2 = 0;
   var stophorse = null;
+  var clickHorse = 0;
+  var clickCat = 0;
 
-  var running = function () {
-      position1 += 10;
-      $('#horse').css({'transform': `translate(${position1}rem)`});
-      if(collision($('#horse'), $('#apple1'))) {
-        clearInterval(stophorse);
-        //winning thing
-        //alert("horse wins");
-        clearInterval(Interval);
-        horseWin();
-    }
-  }
-
-
-  //start button
+  //start button //run
   $('#start').on('click', function() {
     stophorse = setInterval(running,500);
+    clickHorse++;
     $('#run').on('click', function() {
+      clickCat++;
       position2 += 5;
       $('#cat').css({'transform': `translate(${position2}rem) scaleX(-1)`});
       if(collision($('#cat'), $('#apple2'))) {
-        //alert('cat wins');
         clearInterval(Interval);
         clearInterval(stophorse);
         catWin();
@@ -31,30 +21,32 @@ $(function() {
     });
   });
 
+  //pause button
   $('#pause').on('click', function() {
     clearInterval(Interval);
     clearInterval(stophorse);
-  })
+  });
+
+
+
+
 
 /*
 FUNCTIONS FUNCTIONS FUNCTIONS
 */
 
-//make the horse run
-  function horseRun () {
-    var running = setInterval(function() {
-      position1 += 10;
-      $('#horse').css({'transform': `translate(${position1}rem)`});
-      if(collision($('#horse'), $('#apple1'))) {
-        clearInterval(running);
-        //alert("asfajf");
-        clearInterval(Interval);
-        horseWin();
-    }}, 500);
-    return running;
-  };
+//horse running
+  var running = function () {
+    position1 += 10;
+    $('#horse').css({'transform': `translate(${position1}rem)`});
+    if(collision($('#horse'), $('#apple1'))) {
+      clearInterval(stophorse);
+      clearInterval(Interval);
+      horseWin();
+    }
+  }
 
-//colliding
+  //colliding
   function collision(img1, img2) {
     var x1 = img1.offset().left;
     var y1 = img1.offset().top;
@@ -76,14 +68,47 @@ FUNCTIONS FUNCTIONS FUNCTIONS
 
 
 //put this text in html and make it display none
+  // function horseWin() {
+  //   $('.racetrack').empty();
+  //   $('.racetrack').append('<img class = "winner" src = "images/horseapple.jpeg">').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
+  //   clearButtons();
+  //   $('.button').append('<button id = "playAgain">Play Again!</button>');
+  // }
+
   function horseWin() {
-    $('.racetrack').empty();
-    $('.racetrack').append('<img class = "winner" src = "images/horseapple.jpeg">').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
+    $('.racetrack').children().css("display", "none");
+    $('.racetrack').append('<div class = "winnerDiv"><img class = "winner" src = "images/horseapple.jpeg"></div>').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
+    clearButtons();
+    clickPlayAgain();
   }
 
   function catWin() {
     $('.racetrack').empty();
-    $('.racetrack').append('<img class = "winner" src = "images/catapple.jpg">').css('border', 'white').append('<p class = "winText"> You got the apple first! </p>');
+    $('.racetrack').css('border', 'white').append('<p class = "winText"> You got the apple first! </p>').append('<img class = "winner" src = "images/catapple.jpg">');
+    clearButtons();
+    $('.newButton').append('<button id = "playAgain">Play Again!</button>');
+    clickPlayAgain();
+
+  }
+
+  var clearButtons = function() {
+    $('.button').css("display", "none");
+    $('.newButton').append('<button id = "playAgain">Play Again!</button>');
+  }
+
+  var clickPlayAgain = function() {
+    $('#playAgain').on('click', function() {
+      $('.winnerDiv').empty();
+      $('.racetrack').children().css("display", "block");
+      $('.racetrack').css("border", "black solid 1px");
+      $('.button').css("display", "block");
+      $('.newButton').css("display", "none");
+
+      // $('#cat').css({'transform': `translate(-(${position2}*${clickCat})rem) scaleX(-1)`});
+      // $('#horse').css({'transform': `translate(-(${position1}*${clickHorse})rem)`});
+
+      console.log("hi");
+    });
   }
 
 
