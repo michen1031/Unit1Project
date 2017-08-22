@@ -2,17 +2,29 @@ h1 {
   text-align: center;
 }
 
-#horse {
-  width: 25%;
-  height: auto;
+.difficulty {
+  text-align: center;
+}
+
+.selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 
 }
 
-#cat {
+h2 {
+  text-align: center;
+}
+
+#horse, #cat {
   width: 25%;
   height: auto;
-  transform: scaleX(-1);
+}
 
+#cat {
+  transform: scaleX(-1);
 }
 
 .track {
@@ -52,35 +64,11 @@ h1 {
   display: block;
 }
 
-.winText {
+.winText, h3 {
   text-align: center;
 }
 
-h3 {
-  text-align: center;
-}
 
 #seconds, #tens, #colon {
-  font-size: 3em;
-}
-
-
-button{
-@include corners (5px);
-background:$base-color;
-color:$white;
-border: solid 1px $white;
-text-decoration:none;
-cursor:pointer;
-font-size:1.2em;
-padding:18px 10px;
-width:180px;
-margin: 10px;
- outline: none;
-  &:hover{
-	@include transition;
-	background:$white;
-	border: solid 1px $white;
-	color:$base-color;
-	}
+  font-size: 2em;
 }
