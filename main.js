@@ -10,7 +10,9 @@ $(function() {
   //start button //run
   function startGame(levelNum) {
     $('#start').on('click', function() {
-      goHorse = setInterval(running,(600-(levelNum*50)));
+      var subtractNum = 600-(levelNum*100);
+      console.log(subtractNum);
+      goHorse = setInterval(running, subtractNum);
       $('#run').on('click', function() {
         position2 += 5;
         console.log(position2);
@@ -132,6 +134,7 @@ FUNCTIONS FUNCTIONS FUNCTIONS
       $('#playAgain').css("display", "none");
       $('#nextLevel').css("display", "none");
       level++;
+
       startGame(level);
 
       //reposition horse/cat
