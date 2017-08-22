@@ -12,7 +12,9 @@ $(function() {
       if(collision($('#cat'), $('#apple2'))) {
         clearInterval(Interval);
         clearInterval(goHorse);
-        catWin();
+        var imageName = "catapple";
+        var imageType = "jpg";
+        theWinner(imageName, imageType);
       }
     });
   });
@@ -34,7 +36,9 @@ FUNCTIONS FUNCTIONS FUNCTIONS
     if(collision($('#horse'), $('#apple1'))) {
       clearInterval(goHorse);
       clearInterval(Interval);
-      horseWin();
+      var imageName = "horseapple";
+      var imageType = "jpeg";
+      theWinner(imageName, imageType);
     }
   }
 
@@ -64,20 +68,13 @@ FUNCTIONS FUNCTIONS FUNCTIONS
   }
 
 
-  function horseWin() {
+  //winner announcement
+  function theWinner(animalpic, imageType) {
     $('#playAgain').css("display", "block");
     $('.top').empty();
     $('.bottom').empty();
-    $('.racetrack').append('<div class = "winnerDiv"><img class = "winner" src = "images/horseapple.jpeg"></div>').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
-    clearButtons();
-    clickPlayAgain();
-  }
-
-  function catWin() {
-    $('#playAgain').css("display", "block");
-    $('.top').empty();
-    $('.bottom').empty();
-    $('.racetrack').append('<div class = "winnerDiv"><img class = "winner" src = "images/catapple.jpg"></div>').css("border", "white").append('<p class = "winText"> You got the apple first! </p>');
+    console.log(`${animalpic}.${imageType}`);
+    $('.racetrack').append(`<div class = "winnerDiv"><img class = "winner" src = images/${animalpic}.${imageType}></div>`).css("border", "white").append('<p class = "winText"> You got the apple first! </p>');
     clearButtons();
     clickPlayAgain();
   }
