@@ -1,21 +1,17 @@
 $(function() {
   var position1 = 0;
   var position2 = 0;
-  var stophorse = null;
-  var clickHorse = 0;
-  var clickCat = 0;
+  var goHorse = null;
 
   //start button //run
   $('#start').on('click', function() {
-    stophorse = setInterval(running,500);
-    clickHorse++;
+    goHorse = setInterval(running,500);
     $('#run').on('click', function() {
-      clickCat++;
       position2 += 5;
       $('#cat').css({'transform': `translate(${position2}rem) scaleX(-1)`});
       if(collision($('#cat'), $('#apple2'))) {
         clearInterval(Interval);
-        clearInterval(stophorse);
+        clearInterval(goHorse);
         catWin();
       }
     });
@@ -24,12 +20,8 @@ $(function() {
   //pause button
   $('#pause').on('click', function() {
     clearInterval(Interval);
-    clearInterval(stophorse);
+    clearInterval(goHorse);
   });
-
-
-
-
 
 /*
 FUNCTIONS FUNCTIONS FUNCTIONS
@@ -40,7 +32,7 @@ FUNCTIONS FUNCTIONS FUNCTIONS
     position1 += 10;
     $('#horse').css({'transform': `translate(${position1}rem)`});
     if(collision($('#horse'), $('#apple1'))) {
-      clearInterval(stophorse);
+      clearInterval(goHorse);
       clearInterval(Interval);
       horseWin();
     }
@@ -67,84 +59,84 @@ FUNCTIONS FUNCTIONS FUNCTIONS
   }
 
 
-//put this text in html and make it display none
-  // function horseWin() {
-  //   $('.racetrack').empty();
-  //   $('.racetrack').append('<img class = "winner" src = "images/horseapple.jpeg">').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
-  //   clearButtons();
-  //   $('.button').append('<button id = "playAgain">Play Again!</button>');
-  // }
+  var clearButtons = function() {
+    $('.button').css("display", "none");
+  }
+
 
   function horseWin() {
-    $('.racetrack').children().css("display", "none");
+    $('#playAgain').css("display", "block");
+    $('.top').empty();
+    $('.bottom').empty();
     $('.racetrack').append('<div class = "winnerDiv"><img class = "winner" src = "images/horseapple.jpeg"></div>').css('border', 'white').append('<p class = "winText"> The horse got the apple first </p>');
     clearButtons();
     clickPlayAgain();
   }
 
   function catWin() {
-    $('.racetrack').empty();
-    $('.racetrack').css('border', 'white').append('<p class = "winText"> You got the apple first! </p>').append('<img class = "winner" src = "images/catapple.jpg">');
+    $('#playAgain').css("display", "block");
+    $('.top').empty();
+    $('.bottom').empty();
+    $('.racetrack').append('<div class = "winnerDiv"><img class = "winner" src = "images/catapple.jpg"></div>').css("border", "white").append('<p class = "winText"> You got the apple first! </p>');
     clearButtons();
-    $('.newButton').append('<button id = "playAgain">Play Again!</button>');
     clickPlayAgain();
-
-  }
-
-  var clearButtons = function() {
-    $('.button').css("display", "none");
-    $('.newButton').append('<button id = "playAgain">Play Again!</button>');
   }
 
   var clickPlayAgain = function() {
     $('#playAgain').on('click', function() {
+      //empty winner divs
       $('.winnerDiv').empty();
+      $('.winText').empty();
+      $('.top').empty();
+      $('.bottom').empty();
+      //display the racetrack and buttons again
       $('.racetrack').children().css("display", "block");
       $('.racetrack').css("border", "black solid 1px");
       $('.button').css("display", "block");
-      $('.newButton').css("display", "none");
-
-      // $('#cat').css({'transform': `translate(-(${position2}*${clickCat})rem) scaleX(-1)`});
-      // $('#horse').css({'transform': `translate(-(${position1}*${clickHorse})rem)`});
-
-      console.log("hi");
+      $('#playAgain').css("display", "none");
+      //reposition horse/cat
+      $('.top').append('<img id = "horse" src = "images/horse.gif"><img id = "apple1" src = "images/apple.png">')
+      $('.bottom').append('<img id = "cat" src = "images/cat.gif"><img id = "apple2" src = "images/apple.png">')
+      //restart timer
+      clearInterval(Interval);
+      tens = "00";
+      seconds = "00";
+      appendTens.innerHTML = tens;
+      appendSeconds.innerHTML = seconds;
+      //position back at 0
+      position1 = 0;
+      position2 = 0;
     });
   }
 
 
-
-
-
-
 /*
 TIMER TIMER TIMER TIMER
-*/
-var seconds = 00;
-var tens = 00;
-var appendTens = document.getElementById("tens")
-var appendSeconds = document.getElementById("seconds")
-var buttonStart = document.getElementById('start');
-var Interval;
+  */
+  var seconds = 00;
+  var tens = 00;
+  var appendTens = document.getElementById("tens")
+  var appendSeconds = document.getElementById("seconds")
+  var buttonStart = document.getElementById('start');
+  var Interval;
 
-buttonStart.onclick = function() {
-   clearInterval(Interval);
-   Interval = setInterval(startTimer, 10);
-}
-
-function startTimer () {
-  tens++;
-  if(tens < 9){appendTens.innerHTML = "0" + tens;}
-  if (tens > 9){appendTens.innerHTML = tens;}
-  if (tens > 99) {
-    seconds++;
-    appendSeconds.innerHTML = "0" + seconds;
-    tens = 0;
-    appendTens.innerHTML = "0" + 0;
+  buttonStart.onclick = function() {
+     clearInterval(Interval);
+     Interval = setInterval(startTimer, 10);
   }
-  if (seconds > 9){appendSeconds.innerHTML = seconds;}
-}
 
-
+  function startTimer () {
+    tens++;
+    if(tens < 9){appendTens.innerHTML = "0" + tens;}
+    if (tens > 9){appendTens.innerHTML = tens;}
+    if (tens > 99) {
+      seconds++;
+      appendSeconds.innerHTML = "0" + seconds;
+      tens = 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+    if (seconds > 9){appendSeconds.innerHTML = seconds;}
+  }
 
 
 });

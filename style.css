@@ -41,7 +41,7 @@ h1 {
 }
 
 #playAgain{
-  display: block;
+  display: none;
   margin: 0 auto;
 }
 
