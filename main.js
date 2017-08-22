@@ -2,22 +2,29 @@ $(function() {
   var position1 = 0;
   var position2 = 0;
   var goHorse = null;
+  var level = 0;
+
+
+  startGame(level);
 
   //start button //run
-  $('#start').on('click', function() {
-    goHorse = setInterval(running,500);
-    $('#run').on('click', function() {
-      position2 += 5;
-      $('#cat').css({'transform': `translate(${position2}rem) scaleX(-1)`});
-      if(collision($('#cat'), $('#apple2'))) {
-        clearInterval(Interval);
-        clearInterval(goHorse);
-        var imageName = "catapple";
-        var imageType = "jpg";
-        theWinner(imageName, imageType);
-      }
+  function startGame(levelNum) {
+    $('#start').on('click', function() {
+      goHorse = setInterval(running,(600-(levelNum*50)));
+      $('#run').on('click', function() {
+        position2 += 5;
+        console.log(position2);
+        $('#cat').css({'transform': `translate(${position2}rem) scaleX(-1)`});
+        if(collision($('#cat'), $('#apple2'))) {
+          clearInterval(Interval);
+          clearInterval(goHorse);
+          var imageName = "catapple";
+          var imageType = "jpg";
+          theWinner(imageName, imageType);
+        }
+      });
     });
-  });
+  }
 
   //pause button
   $('#pause').on('click', function() {
@@ -63,19 +70,19 @@ FUNCTIONS FUNCTIONS FUNCTIONS
   }
 
 
-  var clearButtons = function() {
-    $('.button').css("display", "none");
-  }
-
-
   //winner announcement
   function theWinner(animalpic, imageType) {
+    //display playAgain button
     $('#playAgain').css("display", "block");
+    $('#nextLevel').css("display", "block");
+    $('.buttonContainer').css("display", "none");
+    //empty racetrack
     $('.top').empty();
     $('.bottom').empty();
-    console.log(`${animalpic}.${imageType}`);
+    $('#start').off('click');
+    $('#run').off('click');
+    //display winner pictures/text
     $('.racetrack').append(`<div class = "winnerDiv"><img class = "winner" src = images/${animalpic}.${imageType}></div>`).css("border", "white").append('<p class = "winText"> You got the apple first! </p>');
-    clearButtons();
     clickPlayAgain();
   }
 
@@ -89,8 +96,11 @@ FUNCTIONS FUNCTIONS FUNCTIONS
       //display the racetrack and buttons again
       $('.racetrack').children().css("display", "block");
       $('.racetrack').css("border", "black solid 1px");
-      $('.button').css("display", "block");
+      $('.buttonContainer').css("display", "block");
       $('#playAgain').css("display", "none");
+      $('#nextLevel').css("display", "none");
+      startGame(level);
+
       //reposition horse/cat
       $('.top').append('<img id = "horse" src = "images/horse.gif"><img id = "apple1" src = "images/apple.png">')
       $('.bottom').append('<img id = "cat" src = "images/cat.gif"><img id = "apple2" src = "images/apple.png">')
@@ -103,8 +113,42 @@ FUNCTIONS FUNCTIONS FUNCTIONS
       //position back at 0
       position1 = 0;
       position2 = 0;
+      console.log(position2);
     });
   }
+
+
+    $('#nextLevel').on('click', function() {
+      //empty winner divs
+      console.log('hi');
+      $('.winnerDiv').empty();
+      $('.winText').empty();
+      $('.top').empty();
+      $('.bottom').empty();
+      //display the racetrack and buttons again
+      $('.racetrack').children().css("display", "block");
+      $('.racetrack').css("border", "black solid 1px");
+      $('.buttonContainer').css("display", "block");
+      $('#playAgain').css("display", "none");
+      $('#nextLevel').css("display", "none");
+      level++;
+      startGame(level);
+
+      //reposition horse/cat
+      $('.top').append('<img id = "horse" src = "images/horse.gif"><img id = "apple1" src = "images/apple.png">')
+      $('.bottom').append('<img id = "cat" src = "images/cat.gif"><img id = "apple2" src = "images/apple.png">')
+      //restart timer
+      clearInterval(Interval);
+      tens = "00";
+      seconds = "00";
+      appendTens.innerHTML = tens;
+      appendSeconds.innerHTML = seconds;
+      //position back at 0
+      position1 = 0;
+      position2 = 0;
+      console.log(position2);
+    })
+
 
 
 /*

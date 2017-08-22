@@ -40,7 +40,7 @@ h1 {
   margin: 1em 2em
 }
 
-#playAgain{
+#playAgain, #nextLevel {
   display: none;
   margin: 0 auto;
 }
