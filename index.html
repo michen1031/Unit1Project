@@ -4,11 +4,25 @@
     <meta charset="utf-8">
     <title>Unit 1 Project</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="Bootstrap" charset="utf-8" /> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="Bootstrap" charset="utf-8" />
   </head>
   <body>
     <h1> Get to the Apple First! </h1>
     <div class = "instructions">
+      <h2 class = "headerInstruc">Instructions</h2>
+      <div class = "paraInstruc">
+        <p>1. Select a difficulty</p>
+        <p>2. Click "Start Game!" (Warning: the horse will start running immediately!)</p>
+        <p>3. Click "Run!" to move forward. Keep clicking to get to the apple first!</p>
+      </div>
+    </div>
+    <div class = "player">
+      <h2>Pick your player</h2>
+      <div class = "playerButtons">
+        <button id = "catdog">Cat</button>
+        <button id = "ostrichBut">Ostrich</button>
+        <button id = "pikaBut">Pikachu</button>
+      </div>
     </div>
     <div class = "selection">
       <h2>Select a Difficulty: </h2>
@@ -24,8 +38,8 @@
         <img id = "apple1" src = "images/apple.png">
       </div>
       <div class = "bottom track">
-        <img id = "cat" src = "images/cat.gif">
-        <img id = "apple2" src = "images/apple.png">
+        <!-- <img id = "cat" src = "images/cat.gif">
+        <img id = "apple2" src = "images/apple.png"> -->
       </div>
     </div>
     <div>
@@ -33,6 +47,7 @@
         <button id = "start">Start Game!</button>
         <button id = "pause">Pause Game</button>
         <button id = "run">Run!</button>
+
       </div>
       <div class = "playGameAgain">
         <button id = "playAgain">Play Again!</button>
@@ -44,5 +59,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="main.js" charset="utf-8"></script>
+    <script src="practice.js" charset="utf-8"></script>
   </body>
 </html>

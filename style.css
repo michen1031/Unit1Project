@@ -2,6 +2,13 @@ h1 {
   text-align: center;
 }
 
+.paraInstruc {
+  text-align: left;
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+}
+
 .difficulty {
   text-align: center;
 }
@@ -11,11 +18,18 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-
 }
 
 h2 {
   text-align: center;
+}
+
+.headerInstruc {
+  font-size: 2em;
+  text-align: left;
+  width: 40%;
+  display: block;
+  margin: 0 auto;
 }
 
 #horse, #cat {
@@ -25,6 +39,16 @@ h2 {
 
 #cat {
   transform: scaleX(-1);
+}
+
+#ostrich{
+  width: 18%;
+  height: auto;
+}
+
+#pikachu {
+  width: 22%;
+  height: auto;
 }
 
 .track {
