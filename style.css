@@ -9,11 +9,14 @@ h1 {
   display: block;
 }
 
-.difficulty {
-  text-align: center;
+.selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
-.selection {
+.playerButtons{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,11 +25,12 @@ h1 {
 
 h2 {
   text-align: center;
+  font-size: 2em;
 }
 
 .headerInstruc {
   font-size: 2em;
-  text-align: left;
+  text-align: center;
   width: 40%;
   display: block;
   margin: 0 auto;
@@ -48,6 +52,11 @@ h2 {
 
 #pikachu {
   width: 22%;
+  height: auto;
+}
+
+#homer {
+  width: 18%;
   height: auto;
 }
 
@@ -92,6 +101,10 @@ h2 {
   text-align: center;
 }
 
+.winText {
+  padding: .5em;
+  font-size: 3em;
+}
 
 #seconds, #tens, #colon {
   font-size: 2em;

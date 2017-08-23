@@ -4,7 +4,7 @@ $(function() {
   var goHorse = null;
   var level = -1;
   var character = 0;
-  var players = ["none", "cat", "ostrich", "pikachu"];
+  var players = ["none", "cat", "ostrich", "pikachu", "homer"];
 
   //RUN THE GAME
   startGame();
@@ -15,6 +15,7 @@ $(function() {
     $('#ostrichBut').css("background", "white");
     $('#catdog').css("background", "yellow");
     $('#pikaBut').css("background", "white");
+    $('#homerBut').css("background", "white");
     displayAnimal(players[character]);
   });
 
@@ -23,6 +24,7 @@ $(function() {
     $('#catdog').css("background", "white");
     $('#ostrichBut').css("background", "yellow");
     $('#pikaBut').css("background", "white");
+    $('#homerBut').css("background", "white");
     displayAnimal(players[character]);
   });
 
@@ -31,6 +33,16 @@ $(function() {
     $('#ostrichBut').css("background", "white");
     $('#catdog').css("background", "white");
     $('#pikaBut').css("background", "yellow");
+    $('#homerBut').css("background", "white");
+    displayAnimal(players[character]);
+  });
+
+  $('#homerBut').on('click', function() {
+    character = 4;
+    $('#ostrichBut').css("background", "white");
+    $('#catdog').css("background", "white");
+    $('#pikaBut').css("background", "white");
+    $('#homerBut').css("background", "yellow");
     displayAnimal(players[character]);
   });
 
@@ -177,8 +189,8 @@ $(function() {
   //PLAY THE GAME AGAIN
   $('#playAgain').on('click', function() {
     //EMPTY WINNER DIVS
-    $('.winnerDiv').empty();
-    $('.winText').empty();
+    $('.winnerDiv').remove();
+    $('.winText').remove();
     //DISPLAY RACETRACK/BUTTONS
     $('.racetrack').children().css("display", "block");
     $('.racetrack').css("border", "black solid 1px");
