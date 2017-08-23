@@ -1,5 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+* {
+  font-family: "Rubik";
+  background-color: #FFF5F5;
+}
+
 h1 {
+  background-image: url("images/appletree.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  padding: 2em;
+  font-family: "Baloo Bhaijaan";
+  font-size: 2.5em;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8em;
+  padding: .1em .1em 0 .1em;
+  margin: .5em;
+  font-family: "Baloo Bhaijaan";
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
 
 .paraInstruc {
@@ -9,59 +40,71 @@ h1 {
   display: block;
 }
 
-.selection {
+.instruct {
+  padding: .35em;
+  margin: 0;
+  width: 150%;
+}
+
+.difficultButtons > button, .rowOne > button, .rowTwo > button {
+  background-color: #9acd32;
+  padding: .3em;
+  text-align: center;
+  font-size: 1em;
+  width: 8em;
+}
+
+
+.difficultButtons {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.playerButtons{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-h2 {
+.buttonContainer > button, #playAgain {
+  background-color: #9acd32;
+  padding: .3em;
   text-align: center;
-  font-size: 2em;
+  font-size: 1em;
+  width: 8em;
 }
 
-.headerInstruc {
-  font-size: 2em;
-  text-align: center;
-  width: 40%;
+.buttonContainer {
+  width: 90%;
   display: block;
   margin: 0 auto;
 }
 
-#horse, #cat {
-  width: 25%;
+#horse {
+  width: 22%;
   height: auto;
 }
 
 #cat {
   transform: scaleX(-1);
+  width: 20%;
+  height: auto;
 }
 
 #ostrich{
-  width: 18%;
+  width: 16%;
   height: auto;
 }
 
 #pikachu {
-  width: 22%;
+  width: 18%;
   height: auto;
 }
 
 #homer {
-  width: 18%;
+  width: 15%;
   height: auto;
 }
 
 .track {
   position: relative;
+  background-color: white;
 }
 
 #apple1, #apple2 {
@@ -70,16 +113,19 @@ h2 {
   position: absolute;
   right: 0;
   margin: 2em 1em 0 0;
+  background-color: white;
 }
 
 
 .racetrack {
-  border: black solid 1px;
-  margin: 2em 2em;
+  border: black solid 2px;
+  margin: 0 auto;
   width: 90%;
   height: auto;
   box-sizing: border-box;
+  display: block;
 }
+
 
 #run, #start, #pause {
   margin: 1em 2em
@@ -91,7 +137,7 @@ h2 {
 }
 
 .winner{
-  width: 50%;
+  width: 30%;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -102,8 +148,7 @@ h2 {
 }
 
 .winText {
-  padding: .5em;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 #seconds, #tens, #colon {

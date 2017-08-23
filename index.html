@@ -4,32 +4,41 @@
     <meta charset="utf-8">
     <title>Unit 1 Project</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="Bootstrap" charset="utf-8" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="Bootstrap" charset="utf-8" /> -->
   </head>
   <body>
     <h1> Get to the Apple First! </h1>
-    <div class = "instructions">
-      <h2 class = "headerInstruc">Instructions</h2>
-      <div class = "paraInstruc">
-        <p>1. Select a difficulty</p>
-        <p>2. Click "Start Game!" (Warning: the horse will start running immediately!)</p>
-        <p>3. Click "Run!" to move forward. Keep clicking to get to the apple first!</p>
+    <div class = "container">
+      <div class = "instructions">
+        <h2>Instructions</h2>
+        <div class = "paraInstruc">
+          <p class = "instruct">1. Select a player</p>
+          <p class = "instruct">2. Select a difficulty</p>
+          <p class = "instruct">3. Click "Start Game!" (Warning: the horse will start running immediately!)</p>
+          <p class = "instruct">4. Click "Run!" to move forward. Keep clicking to get to the apple first!</p>
+        </div>
       </div>
-    </div>
-    <div class = "player">
-      <h2>Pick your player</h2>
-      <div class = "playerButtons">
-        <button id = "catdog">Cat</button>
-        <button id = "ostrichBut">Ostrich</button>
-        <button id = "pikaBut">Pikachu</button>
-        <button id = "homerBut">Homer</button>
+      <div class = "player">
+        <h2>Pick your player</h2>
+        <div class = "playerButtons">
+          <div class = "rowOne">
+            <button id = "catBut">Cat</button>
+            <button id = "ostrichBut">Ostrich</button>
+          </div>
+          <div class = "rowTwo">
+            <button id = "pikaBut">Pikachu</button>
+            <button id = "homerBut">Homer</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <h2>Select a Difficulty: </h2>
-    <div class = "selection">
-      <button id = "easy">Easy</button>
-      <button id = "med">Medium</button>
-      <button id = "hard">Hard</button>
+      <div class = "selection">
+        <h2>Select a Difficulty</h2>
+        <div class = "difficultButtons">
+          <button id = "easy">Easy</button>
+          <button id = "med">Medium</button>
+          <button id = "hard">Hard</button>
+        </div>
+      </div>
     </div>
     <div class = "racetrack">
       <div class = "top track">
