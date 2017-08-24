@@ -100,6 +100,8 @@ $(function() {
       return level;
     });
 
+//STACK OVERFLOW
+
 
   //START GAME
     function startGame() {
@@ -109,7 +111,7 @@ $(function() {
           alert("Please select a difficulty!");
           return;
         }
-        if(character == 0) {
+        if (character == 0) {
           alert("Please select a player!");
           return;
         }
