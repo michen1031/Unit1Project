@@ -112,6 +112,12 @@ h2 {
   height: auto;
 }
 
+#yoshi {
+  width: 15%;
+  height: auto;
+  background-color: white;
+}
+
 .track {
   position: relative;
   background-color: white;

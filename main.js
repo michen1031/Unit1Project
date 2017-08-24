@@ -7,7 +7,7 @@ $(function() {
   var bestSecs = null;
   var bestMils = null;
   var bestScore = null;
-  var players = ["none", "cat", "ostrich", "pikachu", "homer", "bears"];
+  var players = ["none", "cat", "ostrich", "pikachu", "homer", "bears", "yoshi"];
 
   //RUN THE GAME
   startGame();
@@ -15,51 +15,79 @@ $(function() {
   //USER PICKS A PLAYER
     $('#catBut').on('click', function() {
       character = 1;
+      var audio = $("#catSound")[0];
+      audio.play();
       $('#ostrichBut').css("background", "#9acd32");
       $('#catBut').css("background", "#FD5B5B");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#9acd32");
       $('#bearsBut').css("background", "#9acd32");
+      $('#yoshiBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
     $('#ostrichBut').on('click', function() {
       character = 2;
+      var audio = $("#ostrichSound")[0];
+      audio.play();
       $('#catBut').css("background", "#9acd32");
       $('#ostrichBut').css("background", "#FD5B5B");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#9acd32");
       $('#bearsBut').css("background", "#9acd32");
+      $('#yoshiBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
     $('#pikaBut').on('click', function() {
       character = 3;
+      var audio = $("#pikaSound")[0];
+      audio.play();
       $('#ostrichBut').css("background", "#9acd32");
       $('#catBut').css("background", "#9acd32");
       $('#pikaBut').css("background", "#FD5B5B");
       $('#homerBut').css("background", "#9acd32");
       $('#bearsBut').css("background", "#9acd32");
+      $('#yoshiBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
     $('#homerBut').on('click', function() {
       character = 4;
+      var audio = $("#homerSound")[0];
+      audio.play();
       $('#ostrichBut').css("background", "#9acd32");
       $('#catBut').css("background", "#9acd32");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#FD5B5B");
       $('#bearsBut').css("background", "#9acd32");
+      $('#yoshiBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
     $('#bearsBut').on('click', function() {
       character = 5;
+      var audio = $("#bearsSound")[0];
+      audio.play();
       $('#ostrichBut').css("background", "#9acd32");
       $('#catBut').css("background", "#9acd32");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#9acd32");
       $('#bearsBut').css("background", "#FD5B5B");
+      $('#yoshiBut').css("background", "#9acd32");
+      displayAnimal(players[character]);
+    });
+
+    $('#yoshiBut').on('click', function() {
+      character = 6;
+      var audio = $("#yoshiSound")[0];
+      audio.play();
+      $('#ostrichBut').css("background", "#9acd32");
+      $('#catBut').css("background", "#9acd32");
+      $('#pikaBut').css("background", "#9acd32");
+      $('#homerBut').css("background", "#9acd32");
+      $('#bearsBut').css("background", "#9acd32");
+      $('#yoshiBut').css("background", "#FD5B5B");
       displayAnimal(players[character]);
     });
 
@@ -68,6 +96,7 @@ $(function() {
       $('.bottom').append(`<img id = ${players[character]} src = images/${animal}.gif><img id = "apple2" src = "images/apple.png">`)
       console.log(players[character]);
     }
+
 
 
   // GET FIND INITIAL POSITION OF ANIMALS AND RESET THEM WHEN REPLAYING THE GAME
@@ -189,6 +218,8 @@ $(function() {
               console.log(bestScore);
               clearInterval(Interval);
               clearInterval(goHorse);
+              var audio = $("#winning")[0];
+              audio.play();
               var imageName = `${players[character]}apple`;
               var imageType = "jpg";
               var raceWinner = "You";
@@ -213,9 +244,12 @@ $(function() {
       if(collision($('#horse'), $('#apple1'))) {
         clearInterval(goHorse);
         clearInterval(Interval);
+        var audio = $("#losing")[0];
+        audio.play();
         var imageName = "horseapple";
         var imageType = "jpeg";
         var raceWinner = "You lose! The horse";
+
         theWinner(imageName, imageType, raceWinner);
       }
     }

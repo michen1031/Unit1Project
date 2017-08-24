@@ -23,14 +23,27 @@
         <div class = "playerButtons">
           <div class = "rowOne">
             <button id = "catBut">Cat</button>
+            <audio id="catSound" src ="sounds/cat.mp3">
+            </audio>
             <button id = "ostrichBut">Ostrich</button>
+            <audio id="ostrichSound" src ="sounds/ostrich.mp3">
+            </audio>
           </div>
           <div class = "rowTwo">
             <button id = "pikaBut">Pikachu</button>
+            <audio id="pikaSound" src ="sounds/pikachu.mp3">
+            </audio>
             <button id = "homerBut">Homer</button>
+            <audio id="homerSound" src ="sounds/homer.wav">
+            </audio>
           </div>
           <div class = "rowThree">
             <button id = "bearsBut">Bears</button>
+            <audio id="bearsSound" src ="sounds/bears.mp3">
+            </audio>
+            <button id = "yoshiBut">Yoshi</button>
+            <audio id="yoshiSound" src ="sounds/yoshi.mp3">
+            </audio>
           </div>
         </div>
       </div>
@@ -59,8 +72,6 @@
         <button id = "start">Start Game!</button>
         <button id = "run">Run!</button>
         <button id = "pause">Pause Game</button>
-
-
       </div>
       <div class = "playGameAgain">
         <button id = "playAgain">Play Again!</button>
@@ -74,5 +85,9 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="main.js" charset="utf-8"></script>
     <script src="practice.js" charset="utf-8"></script>
+    <audio id="losing" src ="sounds/losing.mp3">
+    </audio>
+    <audio id="winning" src ="sounds/winning.mp3">
+    </audio>
   </body>
 </html>
