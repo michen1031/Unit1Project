@@ -52,6 +52,7 @@ h2 {
   text-align: center;
   font-size: 1em;
   width: 8em;
+  border-radius: 12px;
 }
 
 
@@ -68,6 +69,7 @@ h2 {
   text-align: center;
   font-size: 1em;
   width: 8em;
+  border-radius: 12px;
 }
 
 .buttonContainer {
@@ -88,7 +90,7 @@ h2 {
 }
 
 #ostrich{
-  width: 16%;
+  width: 12%;
   height: auto;
 }
 
@@ -99,7 +101,7 @@ h2 {
 }
 
 #homer {
-  width: 15%;
+  width: 12%;
   height: auto;
 }
 
@@ -125,6 +127,18 @@ h2 {
   height: auto;
   box-sizing: border-box;
   display: block;
+}
+
+
+
+#count_num {
+  position: absolute;
+  font-size: 4em;
+  background-color: white;
+  display: none;
+  margin:0 auto;
+  left: 48%;
+  top: 62%;
 }
 
 

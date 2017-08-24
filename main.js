@@ -100,9 +100,6 @@ $(function() {
       return level;
     });
 
-//STACK OVERFLOW
-
-
   //START GAME
     function startGame() {
       resetAnimalPositions([players[character], 'horse']);
@@ -115,34 +112,50 @@ $(function() {
           alert("Please select a player!");
           return;
         }
+        //COUNTDOWN
+        $('#count_num').css("display", "inline-block");
+        var timers = setInterval(function(){
+          $("#count_num").html(function(i,html){
+            if(parseInt(html)>0){
+              return parseInt(html)-1;
+            }
+            else {
+              clearTimeout(timers);
+              goHorse = setInterval(running, 400);
+              $('#count_num').css("display", "none");
+            }
+          });
+        },1000);
+        //COUNTDOWN
 
-        goHorse = setInterval(running, 400);
         $('#run').css("background", "#FD5B5B").css("font-size", "2em").css("padding", ".7em");
-        $('#run').on('click', function() {
-          if(level == 0) {
-            position2 += 7;
-          }
-          else if(level == 1) {
-            position2 += 5;
-          }
-          else if(level == 2) {
-            position2 += 3;
-          }
-          if(players[character] == "cat") {
-            $(`#${players[character]}`).css({'transform': `translate(${position2}rem) scaleX(-1)`});
-          }
-          else if(players[character] != "cat") {
-            $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
-          }
-          if(collision($(`#${players[character]}`), $('#apple2'))) {
-            clearInterval(Interval);
-            clearInterval(goHorse);
-            var imageName = `${players[character]}apple`;
-            var imageType = "jpg";
-            var raceWinner = "You"
-            theWinner(imageName, imageType, raceWinner);
-          }
-        });
+        setTimeout(function(){
+          $('#run').on('click', function() {
+            if(level == 0) {
+              position2 += 7;
+            }
+            else if(level == 1) {
+              position2 += 5;
+            }
+            else if(level == 2) {
+              position2 += 3;
+            }
+            if(players[character] == "cat") {
+              $(`#${players[character]}`).css({'transform': `translate(${position2}rem) scaleX(-1)`});
+            }
+            else if(players[character] != "cat") {
+              $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
+            }
+            if(collision($(`#${players[character]}`), $('#apple2'))) {
+              clearInterval(Interval);
+              clearInterval(goHorse);
+              var imageName = `${players[character]}apple`;
+              var imageType = "jpg";
+              var raceWinner = "You"
+              theWinner(imageName, imageType, raceWinner);
+            }
+          });
+        }, 4350);
       });
     }
 
@@ -151,7 +164,6 @@ $(function() {
       clearInterval(Interval);
       clearInterval(goHorse);
     });
-
 
   //horse running
     var running = function () {
@@ -210,6 +222,7 @@ $(function() {
       position1 = 0;
       position2 = 0;
       level = -1;
+      $("#count_num").html(3);
       });
 
 
@@ -222,10 +235,12 @@ $(function() {
     var Interval;
 
     buttonStart.onclick = function() {
-      if(character != 0 && level != -1) {
-        clearInterval(Interval);
-        Interval = setInterval(startTimer, 10);
-      }
+      setTimeout(function() {
+        if(character != 0 && level != -1) {
+          clearInterval(Interval);
+          Interval = setInterval(startTimer, 10);
+        }
+      }, 4350);
     }
 
     function startTimer () {
