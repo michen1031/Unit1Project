@@ -4,7 +4,10 @@ $(function() {
   var goHorse = null;
   var level = -1;
   var character = 0;
-  var players = ["none", "cat", "ostrich", "pikachu", "homer"];
+  var bestSecs = null;
+  var bestMils = null;
+  var bestScore = null;
+  var players = ["none", "cat", "ostrich", "pikachu", "homer", "bears"];
 
   //RUN THE GAME
   startGame();
@@ -16,6 +19,7 @@ $(function() {
       $('#catBut').css("background", "#FD5B5B");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#9acd32");
+      $('#bearsBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
@@ -25,6 +29,7 @@ $(function() {
       $('#ostrichBut').css("background", "#FD5B5B");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#9acd32");
+      $('#bearsBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
@@ -34,6 +39,7 @@ $(function() {
       $('#catBut').css("background", "#9acd32");
       $('#pikaBut').css("background", "#FD5B5B");
       $('#homerBut').css("background", "#9acd32");
+      $('#bearsBut').css("background", "#9acd32");
       displayAnimal(players[character]);
     });
 
@@ -43,6 +49,17 @@ $(function() {
       $('#catBut').css("background", "#9acd32");
       $('#pikaBut').css("background", "#9acd32");
       $('#homerBut').css("background", "#FD5B5B");
+      $('#bearsBut').css("background", "#9acd32");
+      displayAnimal(players[character]);
+    });
+
+    $('#bearsBut').on('click', function() {
+      character = 5;
+      $('#ostrichBut').css("background", "#9acd32");
+      $('#catBut').css("background", "#9acd32");
+      $('#pikaBut').css("background", "#9acd32");
+      $('#homerBut').css("background", "#9acd32");
+      $('#bearsBut').css("background", "#FD5B5B");
       displayAnimal(players[character]);
     });
 
@@ -60,7 +77,7 @@ $(function() {
     function getInitPositionOfAnimal(animal) {
       return $('#' + animal).position();
     }
-
+    //since the cat gif needs to be flipped horizontally
     function isCat(animal) {
       return (animal === "cat") ? true : false
     }
@@ -103,6 +120,7 @@ $(function() {
   //START GAME
     function startGame() {
       resetAnimalPositions([players[character], 'horse']);
+
       $('#start').on('click', function() {
         if(level == -1) {
           alert("Please select a difficulty!");
@@ -112,13 +130,17 @@ $(function() {
           alert("Please select a player!");
           return;
         }
+
         //COUNTDOWN
         $('#count_num').css("display", "inline-block");
         var timers = setInterval(function(){
           $("#count_num").html(function(i,html){
-            if(parseInt(html)>0){
+            if(parseInt(html)>1){
               return parseInt(html)-1;
             }
+            //  if(parseInt(html) > -1) {
+            //    return "Go!";
+            //  }
             else {
               clearTimeout(timers);
               goHorse = setInterval(running, 400);
@@ -126,9 +148,11 @@ $(function() {
             }
           });
         },1000);
-        //COUNTDOWN
 
+        //Run button becomes bigger after hitting start
         $('#run').css("background", "#FD5B5B").css("font-size", "2em").css("padding", ".7em");
+
+        //User cannot click Run until countdown is done
         setTimeout(function(){
           $('#run').on('click', function() {
             if(level == 0) {
@@ -147,15 +171,32 @@ $(function() {
               $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
             }
             if(collision($(`#${players[character]}`), $('#apple2'))) {
+              if(bestSecs == null && bestMils == null) {
+                bestSecs = seconds;
+                bestMils = tens;
+                bestScore = `${bestSecs}:${bestMils}`;
+              }
+              if(tens < bestMils) {
+                if(seconds <= bestSecs) {
+                  bestSecs = seconds;
+                  bestMils = tens;
+                  bestScore = `${bestSecs}:${bestMils}`;
+                }
+              }
+              $('.bestTime').remove();
+              $('.wrapper').append(`<p class = "bestTime">Best Time: ${bestScore}`);
+
+              console.log(bestScore);
               clearInterval(Interval);
               clearInterval(goHorse);
               var imageName = `${players[character]}apple`;
               var imageType = "jpg";
-              var raceWinner = "You"
+              var raceWinner = "You";
+
               theWinner(imageName, imageType, raceWinner);
             }
           });
-        }, 4350);
+        }, 3350);
       });
     }
 
@@ -165,9 +206,9 @@ $(function() {
       clearInterval(goHorse);
     });
 
-  //horse running
+  //HORSE RUNNING
     var running = function () {
-      position1 += 10;
+      position1 += 8;
       $('#horse').css({'transform': `translate(${position1}rem)`});
       if(collision($('#horse'), $('#apple1'))) {
         clearInterval(goHorse);
@@ -179,12 +220,12 @@ $(function() {
       }
     }
 
-
   //ANNOUNCE THE WINNER
     function theWinner(animalpic, imageType, winner) {
-      //display playAgain button
+      //DISPLAY PLAY AGAIN BUTTON
         $('#playAgain').css("display", "block");
         $('.buttonContainer').css("display", "none");
+
       //HIDE THE RACETRACK
         $('.top').hide();
         $('.bottom').hide();
@@ -200,6 +241,7 @@ $(function() {
       //EMPTY WINNER DIVS
       $('.winnerDiv').remove();
       $('.winText').remove();
+
       //DISPLAY RACETRACK/BUTTONS
       $('.racetrack').children().css("display", "block");
       $('.racetrack').css("border", "black solid 1px");
@@ -212,12 +254,14 @@ $(function() {
       $('.top').show();
       $('.bottom').show();
       $('#run').css("background","#9acd32").css("font-size", "1em").css("padding", ".3em");
+
       //START THE TIMER OVER
       clearInterval(Interval);
       tens = "00";
       seconds = "00";
       appendTens.innerHTML = tens;
       appendSeconds.innerHTML = seconds;
+
       //REPOSITION CHARACTERS
       position1 = 0;
       position2 = 0;

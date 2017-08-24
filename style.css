@@ -30,12 +30,11 @@ h2 {
 .container {
   display: flex;
   justify-content: center;
-  width: 90%;
 }
 
 .paraInstruc {
   text-align: left;
-  width: 40%;
+  width: 80%;
   margin: 0 auto;
   display: block;
 }
@@ -46,15 +45,16 @@ h2 {
   width: 150%;
 }
 
-.difficultButtons > button, .rowOne > button, .rowTwo > button {
+.difficultButtons > button, .rowOne > button, .rowTwo > button, .rowThree > button {
   background-color: #9acd32;
   padding: .3em;
   text-align: center;
   font-size: 1em;
   width: 8em;
   border-radius: 12px;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
-
 
 .difficultButtons {
   display: flex;
@@ -70,6 +70,8 @@ h2 {
   font-size: 1em;
   width: 8em;
   border-radius: 12px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 .buttonContainer {
@@ -105,6 +107,11 @@ h2 {
   height: auto;
 }
 
+#bears {
+  width: 14%;
+  height: auto;
+}
+
 .track {
   position: relative;
   background-color: white;
@@ -129,7 +136,13 @@ h2 {
   display: block;
 }
 
-
+.bestTime {
+  border: black solid 1px;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: white;
+}
 
 #count_num {
   position: absolute;
@@ -139,6 +152,7 @@ h2 {
   margin:0 auto;
   left: 48%;
   top: 62%;
+
 }
 
 
@@ -162,8 +176,19 @@ h2 {
   text-align: center;
 }
 
+h3  {
+  border: 0;
+  padding: 0;
+}
+
 .winText {
   font-size: 2em;
+}
+
+.bestTime {
+  text-align: center;
+  font-size: 2em;
+  width: 20%;
 }
 
 #seconds, #tens, #colon {
