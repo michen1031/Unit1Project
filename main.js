@@ -176,6 +176,7 @@ $(function() {
             else {
               clearTimeout(timers);
               goHorse = setInterval(running, 400);
+              $('#run').prop("disabled", false);
               $('#count_num').css("display", "none");
             }
           });
@@ -271,6 +272,9 @@ $(function() {
     $('#pause').on('click', function() {
       clearInterval(Interval);
       clearInterval(goHorse);
+      $('#run').prop("disabled", true);
+      $("#count_num").html(3);
+      return;
     });
 
 

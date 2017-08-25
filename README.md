@@ -14,7 +14,7 @@ Creating a multi-player option
 Changing the CSS to look more like a game app
 
 ### Any bugs:
-When the game is paused, the user can still click "run" and move their player forward. When I tried to fix this, it broke some other things. Since I ran out of time, I left it like this.
+When the user pauses the game and the game ends, sometimes the picture of the winner will infinite loop. Not sure why this is happening : ( 
 
 ### Technologies used:
 HTML, CSS, JS, JQuery
