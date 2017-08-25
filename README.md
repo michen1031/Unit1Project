@@ -1,5 +1,7 @@
 # Unit1Project
 
+## Link to my project:
+https://michen1031.github.io/Unit1Project/index.html
 
 ### Game I chose:
 Get to the Apple first! (a made-up click event game)
