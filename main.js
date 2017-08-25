@@ -225,26 +225,25 @@ $(function() {
                 if(seconds <= easyBestSecs) {
                   easyBestSecs = seconds;
                   easyBestMils = tens;
-                  easyBestScore = `${bestSecs}:${bestMils}`;
+                  easyBestScore = `${easyBestSecs}:${easyBestMils}`;
                 }
               }
               else if(tens < medBestMils) {
                 if(seconds <= medBestSecs) {
                   medBestSecs = seconds;
                   medBestMils = tens;
-                  medBestScore = `${bestSecs}:${bestMils}`;
+                  medBestScore = `${medBestSecs}:${medBestMils}`;
                 }
               }
               else if(tens < hardBestMils) {
                 if(seconds <= hardBestSecs) {
                   hardBestSecs = seconds;
                   hardBestMils = tens;
-                  hardBestScore = `${bestSecs}:${bestMils}`;
+                  hardBestScore = `${hardBestSecs}:${hardBestMils}`;
                 }
               }
 
               if(level == 0) {
-                //$('.easyBestTime').remove();
                 $('.easyBestTime').text(`Easy Best Time: ${easyBestScore}`);
               }
               else if(level == 1) {
