@@ -78,6 +78,7 @@ h2 {
   width: 90%;
   display: block;
   margin: 0 auto;
+  text-align: center;
 }
 
 #horse {
@@ -191,10 +192,15 @@ h3  {
   font-size: 2em;
 }
 
-.bestTime {
+.easyBestTime, .medBestTime, .hardBestTime {
   text-align: center;
   font-size: 2em;
   width: 20%;
+  border: black solid 1px;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: white;
 }
 
 #seconds, #tens, #colon {

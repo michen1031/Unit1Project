@@ -4,9 +4,15 @@ $(function() {
   var goHorse = null;
   var level = -1;
   var character = 0;
-  var bestSecs = null;
-  var bestMils = null;
-  var bestScore = null;
+  var easyBestSecs = null;
+  var easyBestMils = null;
+  var medBestSecs = null;
+  var medBestMils = null;
+  var hardBestSecs = null;
+  var hardBestMils = null;
+  var easyBestScore = null;
+  var medBestScore = null;
+  var hardBestScore = null;
   var players = ["none", "cat", "ostrich", "pikachu", "homer", "bears", "yoshi"];
 
   //RUN THE GAME
@@ -200,22 +206,55 @@ $(function() {
               $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
             }
             if(collision($(`#${players[character]}`), $('#apple2'))) {
-              if(bestSecs == null && bestMils == null) {
-                bestSecs = seconds;
-                bestMils = tens;
-                bestScore = `${bestSecs}:${bestMils}`;
+              if(easyBestSecs == null && easyBestMils == null) {
+                easyBestSecs = seconds;
+                easyBestMils = tens;
+                easyBestScore = `${easyBestSecs}:${easyBestMils}`;
               }
-              if(tens < bestMils) {
-                if(seconds <= bestSecs) {
-                  bestSecs = seconds;
-                  bestMils = tens;
-                  bestScore = `${bestSecs}:${bestMils}`;
+              else if(medBestSecs == null && medBestMils == null) {
+                medBestSecs = seconds;
+                medBestMils = tens;
+                medBestScore = `${medBestSecs}:${medBestMils}`;
+              }
+              else if(hardBestSecs == null && hardBestMils == null) {
+                hardBestSecs = seconds;
+                hardBestMils = tens;
+                hardBestScore = `${hardBestSecs}:${hardBestMils}`;
+              }
+              if(tens < easyBestMils) {
+                if(seconds <= easyBestSecs) {
+                  easyBestSecs = seconds;
+                  easyBestMils = tens;
+                  easyBestScore = `${bestSecs}:${bestMils}`;
                 }
               }
-              $('.bestTime').remove();
-              $('.wrapper').append(`<p class = "bestTime">Best Time: ${bestScore}`);
+              else if(tens < medBestMils) {
+                if(seconds <= medBestSecs) {
+                  medBestSecs = seconds;
+                  medBestMils = tens;
+                  medBestScore = `${bestSecs}:${bestMils}`;
+                }
+              }
+              else if(tens < hardBestMils) {
+                if(seconds <= hardBestSecs) {
+                  hardBestSecs = seconds;
+                  hardBestMils = tens;
+                  hardBestScore = `${bestSecs}:${bestMils}`;
+                }
+              }
 
-              console.log(bestScore);
+              if(level == 0) {
+                //$('.easyBestTime').remove();
+                $('.easyBestTime').text(`Easy Best Time: ${easyBestScore}`);
+              }
+              else if(level == 1) {
+                $('.medBestTime').text(`Medium Best Time: ${medBestScore}`);
+              }
+              else if(level == 2) {
+                $('.hardBestTime').text(`Hard Best Time: ${hardBestScore}`);
+              }
+
+            //  console.log(bestScore);
               clearInterval(Interval);
               clearInterval(goHorse);
               var audio = $("#winning")[0];

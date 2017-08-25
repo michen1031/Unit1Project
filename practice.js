@@ -4,7 +4,16 @@
 //   var goHorse = null;
 //   var level = -1;
 //   var character = 0;
-//   var players = ["none", "cat", "ostrich", "pikachu", "homer"];
+//   var easyBestSecs = null;
+//   var easyBestMils = null;
+//   var medBestSecs = null;
+//   var medBestMils = null;
+//   var hardBestSecs = null;
+//   var hardBestMils = null;
+//   var easyBestScore = null;
+//   var medBestScore = null;
+//   var hardBestScore = null;
+//   var players = ["none", "cat", "ostrich", "pikachu", "homer", "bears", "yoshi"];
 //
 //   //RUN THE GAME
 //   startGame();
@@ -12,37 +21,79 @@
 //   //USER PICKS A PLAYER
 //     $('#catBut').on('click', function() {
 //       character = 1;
+//       var audio = $("#catSound")[0];
+//       audio.play();
 //       $('#ostrichBut').css("background", "#9acd32");
 //       $('#catBut').css("background", "#FD5B5B");
 //       $('#pikaBut').css("background", "#9acd32");
 //       $('#homerBut').css("background", "#9acd32");
+//       $('#bearsBut').css("background", "#9acd32");
+//       $('#yoshiBut').css("background", "#9acd32");
 //       displayAnimal(players[character]);
 //     });
 //
 //     $('#ostrichBut').on('click', function() {
 //       character = 2;
+//       var audio = $("#ostrichSound")[0];
+//       audio.play();
 //       $('#catBut').css("background", "#9acd32");
 //       $('#ostrichBut').css("background", "#FD5B5B");
 //       $('#pikaBut').css("background", "#9acd32");
 //       $('#homerBut').css("background", "#9acd32");
+//       $('#bearsBut').css("background", "#9acd32");
+//       $('#yoshiBut').css("background", "#9acd32");
 //       displayAnimal(players[character]);
 //     });
 //
 //     $('#pikaBut').on('click', function() {
 //       character = 3;
+//       var audio = $("#pikaSound")[0];
+//       audio.play();
 //       $('#ostrichBut').css("background", "#9acd32");
 //       $('#catBut').css("background", "#9acd32");
 //       $('#pikaBut').css("background", "#FD5B5B");
 //       $('#homerBut').css("background", "#9acd32");
+//       $('#bearsBut').css("background", "#9acd32");
+//       $('#yoshiBut').css("background", "#9acd32");
 //       displayAnimal(players[character]);
 //     });
 //
 //     $('#homerBut').on('click', function() {
 //       character = 4;
+//       var audio = $("#homerSound")[0];
+//       audio.play();
 //       $('#ostrichBut').css("background", "#9acd32");
 //       $('#catBut').css("background", "#9acd32");
 //       $('#pikaBut').css("background", "#9acd32");
 //       $('#homerBut').css("background", "#FD5B5B");
+//       $('#bearsBut').css("background", "#9acd32");
+//       $('#yoshiBut').css("background", "#9acd32");
+//       displayAnimal(players[character]);
+//     });
+//
+//     $('#bearsBut').on('click', function() {
+//       character = 5;
+//       var audio = $("#bearsSound")[0];
+//       audio.play();
+//       $('#ostrichBut').css("background", "#9acd32");
+//       $('#catBut').css("background", "#9acd32");
+//       $('#pikaBut').css("background", "#9acd32");
+//       $('#homerBut').css("background", "#9acd32");
+//       $('#bearsBut').css("background", "#FD5B5B");
+//       $('#yoshiBut').css("background", "#9acd32");
+//       displayAnimal(players[character]);
+//     });
+//
+//     $('#yoshiBut').on('click', function() {
+//       character = 6;
+//       var audio = $("#yoshiSound")[0];
+//       audio.play();
+//       $('#ostrichBut').css("background", "#9acd32");
+//       $('#catBut').css("background", "#9acd32");
+//       $('#pikaBut').css("background", "#9acd32");
+//       $('#homerBut').css("background", "#9acd32");
+//       $('#bearsBut').css("background", "#9acd32");
+//       $('#yoshiBut').css("background", "#FD5B5B");
 //       displayAnimal(players[character]);
 //     });
 //
@@ -53,6 +104,7 @@
 //     }
 //
 //
+//
 //   // GET FIND INITIAL POSITION OF ANIMALS AND RESET THEM WHEN REPLAYING THE GAME
 //     var horse_postion = getInitPositionOfAnimal('horse');
 //     var player_postion = getInitPositionOfAnimal(players[character]);
@@ -60,7 +112,7 @@
 //     function getInitPositionOfAnimal(animal) {
 //       return $('#' + animal).position();
 //     }
-//
+//     //since the cat gif needs to be flipped horizontally
 //     function isCat(animal) {
 //       return (animal === "cat") ? true : false
 //     }
@@ -103,6 +155,7 @@
 //   //START GAME
 //     function startGame() {
 //       resetAnimalPositions([players[character], 'horse']);
+//
 //       $('#start').on('click', function() {
 //         if(level == -1) {
 //           alert("Please select a difficulty!");
@@ -112,13 +165,17 @@
 //           alert("Please select a player!");
 //           return;
 //         }
+//
 //         //COUNTDOWN
 //         $('#count_num').css("display", "inline-block");
 //         var timers = setInterval(function(){
 //           $("#count_num").html(function(i,html){
-//             if(parseInt(html)>0){
+//             if(parseInt(html)>1){
 //               return parseInt(html)-1;
 //             }
+//             //  if(parseInt(html) > -1) {
+//             //    return "Go!";
+//             //  }
 //             else {
 //               clearTimeout(timers);
 //               goHorse = setInterval(running, 400);
@@ -126,9 +183,11 @@
 //             }
 //           });
 //         },1000);
-//         //COUNTDOWN
 //
+//         //Run button becomes bigger after hitting start
 //         $('#run').css("background", "#FD5B5B").css("font-size", "2em").css("padding", ".7em");
+//
+//         //User cannot click Run until countdown is done
 //         setTimeout(function(){
 //           $('#run').on('click', function() {
 //             if(level == 0) {
@@ -147,15 +206,67 @@
 //               $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
 //             }
 //             if(collision($(`#${players[character]}`), $('#apple2'))) {
+//               if(easyBestSecs == null && easyBestMils == null) {
+//                 easyBestSecs = seconds;
+//                 easyBestMils = tens;
+//                 easyBestScore = `${easyBestSecs}:${easyBestMils}`;
+//               }
+//               else if(medBestSecs == null && medBestMils == null) {
+//                 medBestSecs = seconds;
+//                 medBestMils = tens;
+//                 medBestScore = `${medBestSecs}:${medBestMils}`;
+//               }
+//               else if(hardBestSecs == null && hardBestMils == null) {
+//                 hardBestSecs = seconds;
+//                 hardBestMils = tens;
+//                 hardBestScore = `${hardBestSecs}:${hardBestMils}`;
+//               }
+//               if(tens < easyBestMils) {
+//                 if(seconds <= easyBestSecs) {
+//                   easyBestSecs = seconds;
+//                   easyBestMils = tens;
+//                   easyBestScore = `${bestSecs}:${bestMils}`;
+//                 }
+//               }
+//               else if(tens < medBestMils) {
+//                 if(seconds <= medBestSecs) {
+//                   medBestSecs = seconds;
+//                   medBestMils = tens;
+//                   medBestScore = `${bestSecs}:${bestMils}`;
+//                 }
+//               }
+//               else if(tens < hardBestMils) {
+//                 if(seconds <= hardBestSecs) {
+//                   hardBestSecs = seconds;
+//                   hardBestMils = tens;
+//                   hardBestScore = `${bestSecs}:${bestMils}`;
+//                 }
+//               }
+//
+//               if(level == 0) {
+//                 //$('.easyBestTime').remove();
+//                 $('.easyBestTime').text(`Easy Best Time: ${easyBestScore}`);
+//               }
+//               else if(level == 1) {
+//                 $('.medBestTime').text(`Medium Best Time: ${medBestScore}`);
+//               }
+//               else if(level == 2) {
+//                 $('.hardBestTime').text(`Hard Best Time: ${hardBestScore}`);
+//               }
+//
+//             //  console.log(bestScore);
 //               clearInterval(Interval);
 //               clearInterval(goHorse);
+//               var audio = $("#winning")[0];
+//               audio.play();
 //               var imageName = `${players[character]}apple`;
 //               var imageType = "jpg";
-//               var raceWinner = "You"
+//               var raceWinner = "You";
+//
 //               theWinner(imageName, imageType, raceWinner);
 //             }
 //           });
-//         }, 4350);
+//         }, 3350);
 //       });
 //     }
 //
@@ -165,26 +276,29 @@
 //       clearInterval(goHorse);
 //     });
 //
-//   //horse running
+//   //HORSE RUNNING
 //     var running = function () {
-//       position1 += 10;
+//       position1 += 8;
 //       $('#horse').css({'transform': `translate(${position1}rem)`});
 //       if(collision($('#horse'), $('#apple1'))) {
 //         clearInterval(goHorse);
 //         clearInterval(Interval);
+//         var audio = $("#losing")[0];
+//         audio.play();
 //         var imageName = "horseapple";
 //         var imageType = "jpeg";
 //         var raceWinner = "You lose! The horse";
+//
 //         theWinner(imageName, imageType, raceWinner);
 //       }
 //     }
 //
-//
 //   //ANNOUNCE THE WINNER
 //     function theWinner(animalpic, imageType, winner) {
-//       //display playAgain button
+//       //DISPLAY PLAY AGAIN BUTTON
 //         $('#playAgain').css("display", "block");
 //         $('.buttonContainer').css("display", "none");
+//
 //       //HIDE THE RACETRACK
 //         $('.top').hide();
 //         $('.bottom').hide();
@@ -200,6 +314,7 @@
 //       //EMPTY WINNER DIVS
 //       $('.winnerDiv').remove();
 //       $('.winText').remove();
+//
 //       //DISPLAY RACETRACK/BUTTONS
 //       $('.racetrack').children().css("display", "block");
 //       $('.racetrack').css("border", "black solid 1px");
@@ -212,12 +327,14 @@
 //       $('.top').show();
 //       $('.bottom').show();
 //       $('#run').css("background","#9acd32").css("font-size", "1em").css("padding", ".3em");
+//
 //       //START THE TIMER OVER
 //       clearInterval(Interval);
 //       tens = "00";
 //       seconds = "00";
 //       appendTens.innerHTML = tens;
 //       appendSeconds.innerHTML = seconds;
+//
 //       //REPOSITION CHARACTERS
 //       position1 = 0;
 //       position2 = 0;
