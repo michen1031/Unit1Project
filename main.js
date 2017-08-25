@@ -350,7 +350,7 @@ $(function() {
           clearInterval(Interval);
           Interval = setInterval(startTimer, 10);
         }
-      }, 4350);
+      }, 3350);
     }
 
     function startTimer () {
