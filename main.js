@@ -166,16 +166,13 @@ $(function() {
           return;
         }
 
-        //COUNTDOWN
+        //COUNTDOWN TO START RUNNING
         $('#count_num').css("display", "inline-block");
         var timers = setInterval(function(){
           $("#count_num").html(function(i,html){
             if(parseInt(html)>1){
               return parseInt(html)-1;
             }
-            //  if(parseInt(html) > -1) {
-            //    return "Go!";
-            //  }
             else {
               clearTimeout(timers);
               goHorse = setInterval(running, 400);
@@ -197,7 +194,7 @@ $(function() {
               position2 += 5;
             }
             else if(level == 2) {
-              position2 += 3;
+              position2 += 3.5;
             }
             if(players[character] == "cat") {
               $(`#${players[character]}`).css({'transform': `translate(${position2}rem) scaleX(-1)`});
@@ -205,37 +202,40 @@ $(function() {
             else if(players[character] != "cat") {
               $(`#${players[character]}`).css({'transform': `translate(${position2}rem)`});
             }
+            //IF USER GETS TO APPLE FIRST
             if(collision($(`#${players[character]}`), $('#apple2'))) {
-              if(easyBestSecs == null && easyBestMils == null) {
+              if(easyBestSecs == null && easyBestMils == null && level == 0) {
                 easyBestSecs = seconds;
                 easyBestMils = tens;
                 easyBestScore = `${easyBestSecs}:${easyBestMils}`;
               }
-              else if(medBestSecs == null && medBestMils == null) {
+              else if(medBestSecs == null && medBestMils == null && level == 1) {
                 medBestSecs = seconds;
                 medBestMils = tens;
                 medBestScore = `${medBestSecs}:${medBestMils}`;
+                console.log("secs mils", seconds, tens);
+
               }
-              else if(hardBestSecs == null && hardBestMils == null) {
+              else if(hardBestSecs == null && hardBestMils == null && level == 2) {
                 hardBestSecs = seconds;
                 hardBestMils = tens;
                 hardBestScore = `${hardBestSecs}:${hardBestMils}`;
               }
-              if(tens < easyBestMils) {
+              if(tens < easyBestMils && level == 0) {
                 if(seconds <= easyBestSecs) {
                   easyBestSecs = seconds;
                   easyBestMils = tens;
                   easyBestScore = `${easyBestSecs}:${easyBestMils}`;
                 }
               }
-              else if(tens < medBestMils) {
+              else if(tens < medBestMils && level == 1) {
                 if(seconds <= medBestSecs) {
                   medBestSecs = seconds;
                   medBestMils = tens;
                   medBestScore = `${medBestSecs}:${medBestMils}`;
                 }
               }
-              else if(tens < hardBestMils) {
+              else if(tens < hardBestMils && level == 2) {
                 if(seconds <= hardBestSecs) {
                   hardBestSecs = seconds;
                   hardBestMils = tens;
@@ -243,6 +243,7 @@ $(function() {
                 }
               }
 
+              //UPDATE SCORE
               if(level == 0) {
                 $('.easyBestTime').text(`Easy Best Time: ${easyBestScore}`);
               }
@@ -252,8 +253,6 @@ $(function() {
               else if(level == 2) {
                 $('.hardBestTime').text(`Hard Best Time: ${hardBestScore}`);
               }
-
-            //  console.log(bestScore);
               clearInterval(Interval);
               clearInterval(goHorse);
               var audio = $("#winning")[0];
@@ -261,7 +260,6 @@ $(function() {
               var imageName = `${players[character]}apple`;
               var imageType = "jpg";
               var raceWinner = "You";
-
               theWinner(imageName, imageType, raceWinner);
             }
           });
@@ -275,6 +273,7 @@ $(function() {
       clearInterval(goHorse);
     });
 
+
   //HORSE RUNNING
     var running = function () {
       position1 += 8;
@@ -287,7 +286,6 @@ $(function() {
         var imageName = "horseapple";
         var imageType = "jpeg";
         var raceWinner = "You lose! The horse";
-
         theWinner(imageName, imageType, raceWinner);
       }
     }
@@ -297,23 +295,21 @@ $(function() {
       //DISPLAY PLAY AGAIN BUTTON
         $('#playAgain').css("display", "block");
         $('.buttonContainer').css("display", "none");
-
       //HIDE THE RACETRACK
         $('.top').hide();
         $('.bottom').hide();
         $('#start').off('click');
         $('#run').off('click');
-
       //DISPLAY WINNER TEXT/IMAGES
         $('.racetrack').append(`<div class = "winnerDiv"><img class = "winner" src = images/${animalpic}.${imageType}></div>`).css("border", "#9acd32").append(`<p class = "winText"> ${winner} got the apple first! </p>`);
       }
+
 
   //PLAY THE GAME AGAIN
     $('#playAgain').on('click', function() {
       //EMPTY WINNER DIVS
       $('.winnerDiv').remove();
       $('.winText').remove();
-
       //DISPLAY RACETRACK/BUTTONS
       $('.racetrack').children().css("display", "block");
       $('.racetrack').css("border", "black solid 1px");
@@ -326,20 +322,18 @@ $(function() {
       $('.top').show();
       $('.bottom').show();
       $('#run').css("background","#9acd32").css("font-size", "1em").css("padding", ".3em");
-
       //START THE TIMER OVER
       clearInterval(Interval);
       tens = "00";
       seconds = "00";
       appendTens.innerHTML = tens;
       appendSeconds.innerHTML = seconds;
-
       //REPOSITION CHARACTERS
       position1 = 0;
       position2 = 0;
       level = -1;
       $("#count_num").html(3);
-      });
+    });
 
 
   //TIMER
@@ -372,7 +366,7 @@ $(function() {
       if (seconds > 9){appendSeconds.innerHTML = seconds;}
     }
 
-  //colliding
+  //COLLIDING FUNCTION
     function collision(img1, img2) {
       if (img1 && img2) {
         var x1 = img1.offset().left;

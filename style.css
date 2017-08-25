@@ -159,7 +159,6 @@ h2 {
   margin:0 auto;
   left: 48%;
   top: 62%;
-
 }
 
 
@@ -194,12 +193,10 @@ h3  {
 
 .easyBestTime, .medBestTime, .hardBestTime {
   text-align: center;
-  font-size: 2em;
-  width: 20%;
-  border: black solid 1px;
+  font-size: 1.5em;
   width: 40%;
+  border: black solid 1px;
   margin: 0 auto;
-  text-align: center;
   background-color: white;
 }
 
